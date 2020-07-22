@@ -1,6 +1,9 @@
 import os
 import sqlite3
 
+#https://cdn.sqlitetutorial.net/wp-content/uploads/2018/03/sqlite-sample-database-diagram-color.pdf
+
+
 # construct a path to wherever your database exists
 # DB_FILEPATH = "module1-introduction-to-sql/chinook.db"   # / for windows \ of macOs
 # DB_FILEPATH = os.path.join("module1-introduction-to-sql","chinook.db")

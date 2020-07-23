@@ -42,3 +42,11 @@ result3 = cursor.execute(query).fetchone()
 print("RESULT 3", type(result3), result3)
 
 
+"""
+Check Bruno video 2:00:00 in
+
+import pandas as pd
+
+# Get columns from cursor object
+
+"""

@@ -2,7 +2,7 @@ import os
 import pandas as pd 
 from dotenv import load_dotenv
 import psycopg2
-
+from psycopg2.extras import execute_values
 
 
 # STEP ONE : IMPORT THE CSV INTO A DATAFRAME
@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS titantic_table (
     index INT,
     survived INT,
     pclass INT,
-    name VARCHAR(30),
-    sex VARCHAR(1),
+    name VARCHAR(100),
+    sex VARCHAR(20) ,
     age INT,
     siblings_spouses_aboard INT,
     parents_children_aboard INT,
@@ -52,27 +52,24 @@ cursor.execute(create_titanic_table_query)
 
 # STEP FOUR : INSERT THE DATAFRAME INTO THE TABLE
 
-for row in df.itertuples():
+# for row in df.itertuples():
 
-    cursor.execute('''INSERT INTO titantic_table 
-    (index, survived, pclass, name, sex, age, siblings_spouses_aboard, parents_children_aboard, fare)
-    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
-    ''',(
-    row[0], 
-    row[1], 
-    row[2], 
-    row[3], 
-    row[4], 
-    row[5], 
-    row[6], 
-    row[7], 
-    row[8])
-    )
+#     cursor.execute('''INSERT INTO titantic_table 
+#     (index, survived, pclass, name, sex, age, siblings_spouses_aboard, parents_children_aboard, fare)
+#     VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+#     ''',(
+#     row[0], 
+#     row[1], 
+#     row[2], 
+#     row[3], 
+#     row[4], 
+#     row[5], 
+#     row[6], 
+#     row[7], 
+#     row[8])
+#     )
     
-    # test it first in print()
-    # print(insert_query)
-    #then use cursor
-    cursor.execute(insert_query)
+
 
 
 

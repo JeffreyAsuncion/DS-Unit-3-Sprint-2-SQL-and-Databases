@@ -34,6 +34,33 @@ results = cursor.fetchall()
 
 
 
+### FROM DS 15 timestamp 1:51:13
+
+my_dict = {"a":1, "b": ["dog", "cat", 42], "c": 'true'}
+# insertion_query = "INSERT INTO test_table (name, data) VALUES (%s, %s)"
+## This is object oriented approach with cursor.
+# cursor.execute(insertion_query,
+#     ('A rowwwwww', 'null'))
+
+# cursor.execute(insertion_query,
+#     ('Another row with a JSONNNN', json.dumps(my_dict))
+# )
+
+
+insertion_query = "INSERT INTO test_table (name, data) VALUES %s"
+## This is functional approach using execute_values
+execute_values(cursor, insertion_query, [
+    ('A rowwww', 'null'),
+    ('Another row, with JSOOONNNNN', json.dumps(my_dict)),
+    ('Third row', '3')
+]) # data must be in a list of tuples!!!!!
+
+
+
+
+
+
+
 ################## Connect to SQLite3 db for RPG data ###################
 
 
@@ -41,7 +68,7 @@ import sqlite3
 
 sl_conn = sqlite3.connect("rpg_db.sqlite3")
 sl_cursor = sl_conn.cursor()
-characters = sl_cursor.execute("SELECT * FROM charactercreator_character LIMIT 10;").fetchall()
+characters = sl_cursor.execute("SELECT * FROM charactercreator_character;").fetchall()
 print(characters)
 
 
@@ -70,40 +97,16 @@ conn.commit()
 ################## Insert Character Data in PostGRES ###################
 # INSERT DATA
 
-# for character in characters:
+for character in characters:
 
-#     insert_query = f'''INSERT INTO rpg_characters 
-#     (character_id, name, level, exp, hp, strength, intelligence, dexterity, wisdom)
-#     VALUES {character}
-#     '''
-#     # test it first in print()
-#     # print(insert_query)
-#     #then use cursor
-#     cursor.execute(insert_query)
-
-
-
-### FROM DS 15 timestamp 1:51:13
-
-my_dict = {"a":1, "b": ["dog", "cat", 42], "c": 'true'}
-# insertion_query = "INSERT INTO test_table (name, data) VALUES (%s, %s)"
-## This is object oriented approach with cursor.
-# cursor.execute(insertion_query,
-#     ('A rowwwwww', 'null'))
-
-# cursor.execute(insertion_query,
-#     ('Another row with a JSONNNN', json.dumps(my_dict))
-# )
-
-
-insertion_query = "INSERT INTO test_table (name, data) VALUES %s"
-## This is functional approach using execute_values
-execute_values(cursor, insertion_query, [
-    ('A rowwww', 'null'),
-    ('Another row, with JSOOONNNNN', json.dumps(my_dict)),
-    ('Third row', '3')
-]) # data must be in a list of tuples!!!!!
-
+    insert_query = f'''INSERT INTO rpg_characters 
+    (character_id, name, level, exp, hp, strength, intelligence, dexterity, wisdom)
+    VALUES {character}
+    '''
+    # test it first in print()
+    # print(insert_query)
+    #then use cursor
+    cursor.execute(insert_query)
 
 
 

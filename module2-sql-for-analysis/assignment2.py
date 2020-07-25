@@ -50,24 +50,24 @@ cursor.execute(create_titanic_table_query)
 
 
 
-# STEP FOUR : INSERT THE DATAFRAME INTO THE TABLE
+#STEP FOUR : INSERT THE DATAFRAME INTO THE TABLE
 
-# for row in df.itertuples():
+for row in df.itertuples():
 
-#     cursor.execute('''INSERT INTO titantic_table 
-#     (index, survived, pclass, name, sex, age, siblings_spouses_aboard, parents_children_aboard, fare)
-#     VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
-#     ''',(
-#     row[0], 
-#     row[1], 
-#     row[2], 
-#     row[3], 
-#     row[4], 
-#     row[5], 
-#     row[6], 
-#     row[7], 
-#     row[8])
-#     )
+    cursor.execute('''INSERT INTO titantic_table 
+    (index, survived, pclass, name, sex, age, siblings_spouses_aboard, parents_children_aboard, fare)
+    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    ''',(
+    row[0], 
+    row[1], 
+    row[2], 
+    row[3], 
+    row[4], 
+    row[5], 
+    row[6], 
+    row[7], 
+    row[8])
+    )
     
 
 

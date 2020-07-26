@@ -58,36 +58,23 @@ class ElephantSQLService():
         self.cursor.execute(create_query)
         self.connection.commit()
 
+    def insert_characters(self, characters):
+        """
+        Param characters needs to be a list of tuples, each representing a row to insert (each should have a each column)
+        """
+
+        insertion_query = """
+            INSERT INTO characters (character_id, name, level, exp, hp, strength, intelligence, dexterity, widsom)
+            VALUES %s ;
+        """
+        execute_values(self.cursor, insertion_query, characters)
+        self.connection.commit()
 
 
 
-# class StorageService():
-#     def __init__(self):
-    
-#         self.pg_connection = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
-#         self.pg_cursor = self.pg_connection.cursor()
 
-#     def fetch_characters(self):
-#         return self.sqlite_connection.execute("SELECT * FROM charactercreator_character;").fetchall()
-
-#     def create_character_table(self):
-#         create_query = """
-#         DROP TABLE IF EXISTS characters; -- allows this to be run idempotently, avoids psycopg2.error
-#         CREATE TABLE IF NOT EXISTS characters (
-#             character_id SERIAL PRIMARY KEY,
-#             name VARCHAR(30)
-#             level INT,
-#             exp INT,
-#             hp INT,
-#             strength INT,
-#             intelligence INT,
-#             dexterity INT,
-#             widsom INT
-#         );
-        # """
-
-
-
+class StorageService():
+    pass
 
 
 if __name__ == "__main__":
@@ -102,8 +89,6 @@ if __name__ == "__main__":
     print(type(characters), len(characters))
     print(characters[0])
 
-
-
     #
     # LOAD
     #
@@ -112,17 +97,4 @@ if __name__ == "__main__":
 
     pg_service.create_characters_table()
 
-    # pg_service.insert_characters(characters)
-
-
-
-
-    # characters = service.get_characters()
-    # print(type(characters), len(characters))
-    # print(characters[0])
-
-
-
-    # service.create_characters_table()
-
-    # service.insert_characters(characters)
+    pg_service.insert_characters(characters)

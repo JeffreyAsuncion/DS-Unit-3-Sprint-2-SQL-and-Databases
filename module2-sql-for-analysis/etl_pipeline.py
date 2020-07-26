@@ -63,18 +63,13 @@ class ElephantSQLService():
         Param characters needs to be a list of tuples, each representing a row to insert (each should have a each column)
         """
 
+        # TODO for future check if a duplicate row before adding
         insertion_query = """
             INSERT INTO characters (character_id, name, level, exp, hp, strength, intelligence, dexterity, widsom)
             VALUES %s ;
         """
         execute_values(self.cursor, insertion_query, characters)
         self.connection.commit()
-
-
-
-
-class StorageService():
-    pass
 
 
 if __name__ == "__main__":
@@ -87,7 +82,7 @@ if __name__ == "__main__":
 
     characters = sqlite_service.fetch_characters()
     print(type(characters), len(characters))
-    print(characters[0])
+    print(type(characters[0]), characters[0])
 
     #
     # LOAD

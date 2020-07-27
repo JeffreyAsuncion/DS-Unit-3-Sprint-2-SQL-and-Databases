@@ -26,29 +26,42 @@ print("----------------")
 print("CLIENT:", type(client), client)
 print("DATABASES:", client.list_database_names())
 
-breakpoint()
+# breakpoint()
 # client; dir(client)
 # from pprint import pprint; pprint(dir(client))
 # client.list_database_names()
 
 
+# create new instance in MONGO client.my_test_database
+# similiar we could use db = client['my-test-database']
 db = client.my_test_database # "test_database" or whatever you want to call it
 print("----------------")
 print("DB:", type(db), db)
+print("COLLECTIONS:", db.list_collection_names())
+
 
 collection = db.pokemon_test # "pokemon_test" or whatever you want to call it
 print("----------------")
 print("COLLECTION:", type(collection), collection)
+print("DOCUMENT COUNT:", collection.count_documents({})) # needs filter of empty dict {}
+# insert and find methods using breakpoint(), pprint(dir(collectoions))
+print("COLLECTION LIST:",db.list_collection_names())
 
-print("----------------")
-print("COLLECTIONS:")
-print(db.list_collection_names())
+
+
 
 collection.insert_one({
     "name": "Pikachu",
     "level": 30,
     "exp": 76000000000,
     "hp": 400,
+    "parrents": ["Pikcachu A", "Raichu"],
+    "other_attr": {
+        "a":1,
+        "b":2,
+        "c": 3
+    }
 })
+
 print("DOCS:", collection.count_documents({}))
 print(collection.count_documents({"name": "Pikachu"}))

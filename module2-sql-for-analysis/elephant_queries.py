@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS rpg_characters (
 ''' 
 
 cursor.execute(create_character_table_query)
-conn.commit()
+
 
 
 

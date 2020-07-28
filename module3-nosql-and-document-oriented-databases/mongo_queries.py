@@ -1,6 +1,9 @@
 import pymongo
 import os
 from dotenv import load_dotenv
+from pymongo import MongoClient
+
+
 
 load_dotenv()
 
@@ -12,10 +15,17 @@ connection_uri = f"mongodb+srv://{DB_USER}:{DB_PASSWORD}@{CLUSTER_NAME}.mongodb.
 print("----------------")
 print("URI:", connection_uri)
 
+
+
 client = pymongo.MongoClient(connection_uri)
+exit()
+
 print("----------------")
 print("CLIENT:", type(client), client)
 
 
-client = pymongo.MongoClient("mongodb+srv://admin:<password>@cluster0.5rgpd.mongodb.net/<dbname>?retryWrites=true&w=majority")
-db = client.test
+print(client.list_database_names())
+
+
+
+# im connecting to the DS15 database

@@ -23,7 +23,7 @@ query1 = "SELECT *  FROM charactercreator_character;"
 #result = cursor.execute(query)
 #print("RESULT", result) #> returns cursor object w/o results (need to fetch the results)
 question1 = "What does the data look like?"
-result1 = cursor.execute(query1).fetchall()
+result1 = cursor.execute(query1).fetchone()
 
 # # print the first record
 # print(question1, result1[0])
@@ -39,8 +39,9 @@ df = pd.DataFrame(result1)
 # TODO: df.to_dict from DataFrame to JSon Format
 #
 
-dict = df.to_dict()
+dict = df.to_dict(orient='dict')
 # print(dict)
+
 
 
 
@@ -64,7 +65,11 @@ client = pymongo.MongoClient(connection_uri)
 
 db = client.rpg_data
 
-rpg_data = db.rpg_data
-print(rpg_data.count_documents({}))
+collection = db.rpg_data
 
-rpg_data.insertOne({dict})
+print(collection.count_documents({}))
+
+
+
+
+collection.insert_many(dict)

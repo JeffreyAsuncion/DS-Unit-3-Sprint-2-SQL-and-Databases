@@ -43,5 +43,6 @@ print(df.head())
 print(df.shape)
 print(df.columns)
 
-customers.insert_one({'full name': 'Jeffrey Asuncion'})
+customers.insert_one({'full name': 'Robert Poulson'})
 print(customers.count_documents({}))
+

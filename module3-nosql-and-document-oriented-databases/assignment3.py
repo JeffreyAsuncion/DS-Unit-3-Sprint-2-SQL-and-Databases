@@ -23,7 +23,7 @@ query1 = "SELECT *  FROM charactercreator_character;"
 #result = cursor.execute(query)
 #print("RESULT", result) #> returns cursor object w/o results (need to fetch the results)
 question1 = "What does the data look like?"
-result1 = cursor.execute(query1).fetchone()
+result1 = cursor.execute(query1).fetchall()
 
 # # print the first record
 # print(question1, result1[0])
@@ -39,7 +39,7 @@ df = pd.DataFrame(result1)
 # TODO: df.to_dict from DataFrame to JSon Format
 #
 
-dict = df.to_dict(orient='dict')
+dict = df.to_dict()
 # print(dict)
 
 
@@ -77,15 +77,15 @@ print("----------------")
 print("DB:", type(db), db)
 print("COLLECTIONS:", db.list_collection_names())
 
-exit()
 
 
+collection = db.charactercreator_character
 
-collection = db.rpg_data
+
 
 print(collection.count_documents({}))
 
+print(type(dict))
 
-
-
+exit()
 collection.insert_many(dict)

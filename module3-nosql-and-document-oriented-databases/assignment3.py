@@ -9,8 +9,8 @@ from pdb import set_trace as breakpoint
 
 #
 # Part One:  get data from 1. Sqlite or 2. Postgresql
-
 #
+
 DB_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "rpg_db.sqlite3")
 
 connection = sqlite3.connect(DB_FILEPATH)
@@ -19,31 +19,30 @@ print("CONNECTION:", connection)
 cursor = connection.cursor()
 print("CURSOR", cursor)
 
-query1 = "SELECT *  FROM charactercreator_character;"
-#result = cursor.execute(query)
-#print("RESULT", result) #> returns cursor object w/o results (need to fetch the results)
-question1 = "What does the data look like?"
-result1 = cursor.execute(query1).fetchall()
-
-# # print the first record
-# print(question1, result1[0])
-
-# # print the result of the query
-# print(question1, result1)
-
-df = pd.DataFrame(result1)
-
-# print(df.head())
+query = "SELECT *  FROM charactercreator_character;"
+results = cursor.execute(query).fetchall()
+# print("RESULT", results) #> returns cursor object w/o results (need to fetch the results)
+# print("type:", type(results))
 
 #
-# TODO: df.to_dict from DataFrame to JSon Format
+# Prepare df 
 #
 
-dict = df.to_dict()
-# print(dict)
+columns = ['character_id', 'name', 'level', 'exp', 'hp', 'strength', 'intelligence', 'dexterity', 'wisdom']
+rpg_df = pd.DataFrame(results, columns=columns)
+print(rpg_df.head())
 
 
+#
+# TODO: result to dict
+#
 
+rpg_dict = rpg_df.to_dict('records')
+
+
+#
+# TODO: create and insert to mongoDB
+#
 
 load_dotenv()
 
@@ -56,36 +55,14 @@ print("\n----------------")
 print("URI:", connection_uri)
 
 
-
-# client = pymongo.MongoClient(connection_uri)
-
-
-client = MongoClient(connection_uri)
-print("----------------")
-print("CLIENT:", type(client), client)
-print("DATABASES:", client.list_database_names())
-
-
+client = pymongo.MongoClient(connection_uri)
 
 #
 # TODO: db.collection.insertMany({})
 #
 
-
 db = client.rpg_database 
-print("----------------")
-print("DB:", type(db), db)
-print("COLLECTIONS:", db.list_collection_names())
-
-
 
 collection = db.charactercreator_character
 
-
-
-print(collection.count_documents({}))
-
-print(type(dict))
-
-exit()
-collection.insert_many(dict)
+collection.insert_many(rpg_dict)

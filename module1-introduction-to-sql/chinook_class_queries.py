@@ -1,5 +1,7 @@
 """
-TODO : make each query a string
+## TablePlus and DB Brower for sqlite3
+## PgAdmin for PostgreSQL
+
 """
 
 query = """

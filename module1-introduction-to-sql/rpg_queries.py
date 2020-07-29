@@ -7,7 +7,7 @@ import sqlite3
 # construct a path to wherever your database exists
 # DB_FILEPATH = "module1-introduction-to-sql/chinook.db"   # / for windows \ of macOs
 # DB_FILEPATH = os.path.join("module1-introduction-to-sql","chinook.db")
-DB_FILEPATH = os.path.join(os.path.dirname(__file__), "rpg_db.sqlite3")
+DB_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "rpg_db.sqlite3")
 
 # DB_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "chinook.db") # the .. is to go up one directory
 

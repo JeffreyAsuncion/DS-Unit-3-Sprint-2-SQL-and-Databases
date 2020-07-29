@@ -57,13 +57,29 @@ print("URI:", connection_uri)
 
 
 
-client = pymongo.MongoClient(connection_uri)
+# client = pymongo.MongoClient(connection_uri)
+
+
+client = MongoClient(connection_uri)
+print("----------------")
+print("CLIENT:", type(client), client)
+print("DATABASES:", client.list_database_names())
+
+
 
 #
 # TODO: db.collection.insertMany({})
 #
 
-db = client.rpg_data
+
+db = client.rpg_database 
+print("----------------")
+print("DB:", type(db), db)
+print("COLLECTIONS:", db.list_collection_names())
+
+exit()
+
+
 
 collection = db.rpg_data
 

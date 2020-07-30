@@ -5,6 +5,12 @@ import sqlite3
 ## PgAdmin for PostgreSQL
 '''
 
+'''
+This creates a database
+DB_FILEPATH = os.path.join(os.path.dirname(__file__), "ThisCreatesADB.db")
+connection = sqlite3.connect(DB_FILEPATH)
+'''
+
 #https://cdn.sqlitetutorial.net/wp-content/uploads/2018/03/sqlite-sample-database-diagram-color.pdf
 
 
@@ -14,6 +20,7 @@ import sqlite3
 # DB_FILEPATH = os.path.join(os.path.dirname(__file__), "chinook.db")
 
 DB_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "chinook.db") 
+
 # the .. is to go up one directory
 
 #DB_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "module2-sql-for-analysis", "chinook.db") 
@@ -22,6 +29,8 @@ DB_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "chinook.db")
 
 connection = sqlite3.connect(DB_FILEPATH)
 print("CONNECTION:", connection)
+
+
 
 cursor = connection.cursor()
 print("CURSOR", cursor)
@@ -44,18 +53,5 @@ for row in result2:
 
 query = "SELECT count(distinct CustomerId) as customer_count FROM customers;"
 
-#result = cursor.execute(query)
-#print("RESULT", result) #> returns cursor object w/o results (need to fetch the results)
-
 result3 = cursor.execute(query).fetchone()
 print("RESULT 3", type(result3), result3)
-
-
-"""
-Check Bruno video 2:00:00 in
-
-import pandas as pd
-
-# Get columns from cursor object
-
-"""

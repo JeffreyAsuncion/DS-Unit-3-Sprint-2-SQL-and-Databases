@@ -43,16 +43,16 @@ queries](https://docs.mongodb.com/manual/tutorial/query-documents/) to answer
 the same questions as you did from the first module (when the RPG data was in
 SQLite). With PostgreSQL, answer the following:
 
-- How many passengers survived, and how many died?
-- How many passengers were in each class?
-- How many passengers survived/died within each class?
-- What was the average age of survivors vs nonsurvivors?
-- What was the average age of each passenger class?
-- What was the average fare by passenger class? By survival?
-- How many siblings/spouses aboard on average, by passenger class? By survival?
-- How many parents/children aboard on average, by passenger class? By survival?
-- Do any passengers have the same name?
-- (Bonus! Hard, may require pulling and processing with Python) How many married
+- 1. How many passengers survived, and how many died?
+- 2. How many passengers were in each class?
+- 3. How many passengers survived/died within each class?
+- 4. What was the average age of survivors vs nonsurvivors?
+- 5. What was the average age of each passenger class?
+- 6. What was the average fare by passenger class? By survival?
+- 7. How many siblings/spouses aboard on average, by passenger class? By survival?
+- 8. How many parents/children aboard on average, by passenger class? By survival?
+- 9. Do any passengers have the same name?
+- 10. (Bonus! Hard, may require pulling and processing with Python) How many married
   couples were aboard the Titanic? Assume that two people (one `Mr.` and one
   `Mrs.`) with the same last name and with at least 1 sibling/spouse aboard are
   a married couple.

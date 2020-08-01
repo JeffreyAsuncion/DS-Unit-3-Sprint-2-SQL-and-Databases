@@ -6,7 +6,9 @@ from psycopg2.extras import execute_values
 import pandas as pd
 
 load_dotenv() #> loads contents of the .env file into the script's environment
-
+'''
+https://www.elephantsql.com/
+'''
 DB_NAME = os.getenv("DB_NAME")
 DB_USER = os.getenv("DB_USER")
 DB_PASS = os.getenv("DB_PASS")
@@ -69,7 +71,9 @@ import sqlite3
 sl_conn = sqlite3.connect("rpg_db.sqlite3")
 sl_cursor = sl_conn.cursor()
 characters = sl_cursor.execute("SELECT * FROM charactercreator_character;").fetchall()
-print(characters)
+
+for character in characters:
+    print(type(character), character)
 
 
 ################## Create Character Table in PostGRES ###################
